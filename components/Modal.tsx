@@ -3,7 +3,7 @@ import { FormEvent, Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useModalStore } from "@/store/ModalStore";
 import { useBoardStore } from "@/store/BoardStore";
-import TaskTypeRadioGroup from "./TaskTypeRadioGroup";
+import { TaskTypeRadioGroup } from "@/components";
 import Image from "next/image";
 import { PhotoIcon } from "@heroicons/react/20/solid";
 
@@ -13,8 +13,9 @@ function Modal() {
     state.isOpen,
     state.closeModal,
   ]);
-  const [newTaskInput, setNewTaskInput, image, setImage, addTask] =
+  const [newTaskType, newTaskInput, setNewTaskInput, image, setImage, addTask] =
     useBoardStore((state) => [
+      state.newTaskType,
       state.newTaskInput,
       state.setNewTaskInput,
       state.image,
@@ -24,6 +25,7 @@ function Modal() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!newTaskInput) return;
+    addTask(newTaskInput, newTaskType, image);
     setImage(null);
     closeModal();
   };

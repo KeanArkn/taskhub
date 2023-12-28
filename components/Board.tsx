@@ -1,9 +1,9 @@
 "use client";
 import { useBoardStore } from "@/store/BoardStore";
 import React, { useEffect } from "react";
-import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
+import { DragDropContext, DropResult } from "react-beautiful-dnd";
+import { StrictModeDroppable as Droppable } from "@/helpers/StrictModeDroppable";
 import { Column } from "@/components";
-import { todo } from "node:test";
 
 const Board = () => {
   const [board, getBoard, setBoardState, updateTodoInDB] = useBoardStore(

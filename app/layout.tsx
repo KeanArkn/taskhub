@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Modal from "@/components/Modal";
+import { Modal } from "@/components";
 
 export const metadata: Metadata = {
   title: "Task Manager App",

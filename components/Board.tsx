@@ -1,7 +1,11 @@
 "use client";
 import { useBoardStore } from "@/store/BoardStore";
 import React, { useEffect } from "react";
-import { DragDropContext, DropResult } from "react-beautiful-dnd";
+import {
+  DragDropContext,
+  DropResult,
+  DroppableProvided,
+} from "react-beautiful-dnd";
 import { StrictModeDroppable as Droppable } from "@/helpers/StrictModeDroppable";
 import { Column } from "@/components";
 
@@ -81,7 +85,7 @@ const Board = () => {
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
       <Droppable droppableId="board" direction="horizontal" type="column">
-        {(provided) => (
+        {(provided: DroppableProvided) => (
           <div
             className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-7xl mx-auto px-2"
             {...provided.droppableProps}

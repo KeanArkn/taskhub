@@ -1,5 +1,9 @@
 "use client";
-import { Draggable } from "react-beautiful-dnd";
+import {
+  Draggable,
+  DroppableProvided,
+  DroppableStateSnapshot,
+} from "react-beautiful-dnd";
 import { StrictModeDroppable as Droppable } from "@/helpers/StrictModeDroppable";
 import { TodoCard } from "@/components";
 import { PlusCircleIcon } from "@heroicons/react/20/solid";
@@ -37,7 +41,10 @@ const Column = ({ id, todos, index }: Props) => {
           ref={provided.innerRef}
         >
           <Droppable droppableId={index.toString()} type="card">
-            {(provided, snapshot) => (
+            {(
+              provided: DroppableProvided,
+              snapshot: DroppableStateSnapshot
+            ) => (
               <div
                 {...provided.droppableProps}
                 ref={provided.innerRef}
@@ -77,7 +84,11 @@ const Column = ({ id, todos, index }: Props) => {
                             todo={todo}
                             index={index}
                             id={id}
-                            innerRef={provided.innerRef}
+                            innerRef={
+                              provided.innerRef as (
+                                element?: HTMLElement | null | undefined
+                              ) => void
+                            }
                             draggableProps={provided.draggableProps}
                             dragHandleProps={provided.dragHandleProps}
                           />
